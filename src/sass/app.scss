@@ -1,0 +1,126 @@
+@import 'normalize';
+@import 'mixin';
+@import 'fonts';
+
+html,
+body {
+  min-height: 100vh;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+$main-color: #fec901;
+
+.container {
+  margin: 0 auto;
+  height: 100%;
+  width: 100%;
+  position: relative;
+
+  @include respond-to(t) {
+    width: 90%;
+  }
+
+  @include respond-to(lp) {
+    width: 1120px;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  font-family: $op-r;
+  line-height: 1.6;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+ul {
+  padding-inline-start: 0;
+}
+
+.icon-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.s-header {
+  font-size: 30px;
+  font-family: $gab-r;
+  margin-bottom: 30px;
+
+  @include respond-to(lp) {
+    font-size: 50px;
+  }
+}
+
+.s-text {
+  font-size: 14px;
+  color: #fff;
+
+  @include respond-to(lp) {
+    font-size: 16px;
+  }
+}
+
+.s-btn {
+  padding: 10px 40px;
+  border-radius: 50px;
+  border: none;
+  width: 200px;
+  font-family: $op-b;
+  display: block;
+  text-align: center;
+  transition: all .5s ease;
+
+  &.wb {
+    color: #000;
+    background-color: #fff;
+
+    &:hover {
+      background-color: #e7e7e7;
+    }
+  }
+
+  &.bb {
+    color: #fff;
+    background-color: #000;
+
+    &:hover {
+      background: $main-color;
+    }
+  }
+
+  &.yb {
+    color: #000;
+    background-color: $main-color;
+
+    &:hover {
+      color: #fff;
+      background-color: #000;
+    }
+  }
+
+  &.db {
+    color: #000;
+    background-color: #fff;
+    position: relative;
+
+    &:hover {
+      background-color: #e7e7e7;
+    }
+  }
+}
