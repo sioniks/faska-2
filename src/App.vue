@@ -183,8 +183,13 @@
       </svg>
     </div>
     <!-- <basket v-if="openForm" @closeBasket="openForm = false" :itemForBuy="itemForBuy"/> -->
-    <cart v-if="openForm" @closeBasket="openForm = false" :itemForBuy="itemForBuy"/>
-    <popup-success/>
+    <cart
+      v-if="openForm"
+      @closeBasket="openForm = false"
+      @openPopup="popup()"
+      :itemForBuy="itemForBuy"
+    />
+    <popup-success v-if="openPopup"/>
     <main-footer/>
   </div>
 </template>
@@ -218,6 +223,7 @@ export default {
       active: 1,
       activeBasket: false,
       openForm: false,
+      openPopup: false,
       itemForBuy: [],
       window: {
         width: 0,
@@ -251,6 +257,13 @@ export default {
       // setTimeout(() => {
       this.$refs.carousel2.emit("to.owl.carousel", 5);
       // }, 2000);
+    },
+    popup() {
+      this.openPopup = true;
+      this.itemForBuy = [];
+      setTimeout(() => {
+        this.openPopup = false;
+      }, 2000);
     },
     goToSlide(num) {
       this.activeSlide = num;

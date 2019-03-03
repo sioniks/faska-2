@@ -7,6 +7,7 @@
             <use xlink:href="#icon-cross"></use>
           </svg>
         </div>
+
         <h3 class="basket-header">Вы добавили товар в корзину</h3>
         <div class="items-title">
           <p class="items-title_type">Тара</p>
@@ -21,11 +22,15 @@
             <div class="item__character--wrap">
               <div class="item__type">
                 <label for="tupe" class="item__label item__type--title">Виберите тару:</label>
-                <select id="type" @change="onChange(selected[key], key)" v-model="selected[key]">
+                <select
+                  id="type"
+                  @change="onChange(bucketList[key].size, key)"
+                  v-model="bucketList[key].size"
+                >
                   <option
                     v-for="(option, key) in item.volume"
                     :value="option.size"
-                    :selected="selected[key]"
+                    :selected="option.size === item.size"
                     :key="key"
                   >{{option.size}}</option>
                 </select>
@@ -79,11 +84,10 @@
               </svg>
             </div>
           </div>
-          {{selected}}
+
           <div class="input-group totalprice">
             <label for="totalptice" class="totalprice-header">Итого:</label>
             <input
-              v-if="selected.length"
               id="totalptice"
               name="totalptice"
               type="text"
@@ -151,7 +155,12 @@ export default {
       total: 0,
       fio: "",
       tel: "",
-      email: ""
+      email: "",
+      bucketList: this.itemForBuy.map(item => {
+        return {
+          size: item.size
+        };
+      })
     };
   },
   methods: {
@@ -164,7 +173,6 @@ export default {
       let result = val.reduce((sum, current) => {
         return sum + current;
       }, 0);
-
       return result;
     },
     removeProduct: function(product) {
@@ -173,8 +181,6 @@ export default {
       if (this.itemForBuy.length < 1) {
         this.$emit("closeBasket");
       }
-
-      // console.log(product);
     },
     onChange(item, key) {
       const { size, price } = this.itemForBuy[key].volume.find(
@@ -184,6 +190,8 @@ export default {
       this.itemForBuy[key].price = price;
     },
     submitForm() {
+      this.$emit("closeBasket");
+      this.$emit("openPopup");
       // let data = new FormData();
       // data.append("fio", this.fio);
       // data.append("tel", this.tel);
@@ -211,17 +219,6 @@ export default {
           console.log(err);
         });
     }
-
-    // qty: function(product, dir) {
-    //   for (let i = 0; i < this.itemForBuy.length; i++) {
-    //     let newItem = this.itemForBuy[i];
-    //     if (dir === 1) {
-    //       newItem.count = newItem.count + 1;
-    //     } else if (dir === 2) {
-    //       newItem.count = newItem.count - 1;
-    //     }
-    //   }
-    // }
   }
 };
 </script>

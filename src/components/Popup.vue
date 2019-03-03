@@ -33,10 +33,12 @@ export default {
   background: rgba(#000, 0.5);
   transition: all 0.5s ease;
   visibility: hidden;
-  &.is-active {
-    visibility: visible;
-    z-index: 100;
-  }
+  visibility: visible;
+  z-index: 100;
+  // &.is-active {
+  //   visibility: visible;
+  //   z-index: 100;
+  // }
 }
 .popup {
   @include position(center);
