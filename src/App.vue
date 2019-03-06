@@ -133,7 +133,7 @@
               :character="block.character"
               :description="block.description"
               :key="key"
-              @openBasket="activeBasket = true, itemForBuy.push({img: block.image, title: block.header, count: 1, volume: block.volume})"
+              @openBasket="activeBasket = true, itemForBuy.push({img: block.image, title: block.header, count: 1, size: block.volume[0].size, price: block.volume[0].price, volume: block.volume})"
             />
           </carousel>
         </div>
@@ -422,7 +422,7 @@ export default {
     background-size: 100%;
     background-position: left bottom;
     @include respond-to(t) {
-      height: 780px;
+      height: 625px;
     }
     @include respond-to(lp) {
       background-size: 100% 100%;
@@ -514,7 +514,7 @@ export default {
   &-section {
     height: 500px;
     @include respond-to(lp) {
-      height: 840px;
+      height: 720px;
     }
   }
   .container {

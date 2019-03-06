@@ -1,24 +1,23 @@
 <template>
   <div class="basket">
     <div class="basket-wrap" @click.self="$emit('closeBasket')">
+      <div class="basket-close" @click="$emit('closeBasket')">
+        <svg class="icon-svg">
+          <use xlink:href="#icon-cross"></use>
+        </svg>
+      </div>
       <div class="basket-container">
-        <div class="basket-close" @click="$emit('closeBasket')">
-          <svg class="icon-svg">
-            <use xlink:href="#icon-cross"></use>
-          </svg>
-        </div>
-
         <h3 class="basket-header">Вы добавили товар в корзину</h3>
         <div class="items-title">
           <p class="items-title_type">Тара</p>
           <p class="items-title_count">Колличество</p>
           <p class="items-title_price">Цена</p>
         </div>
-        <form @submit.prevent="submitForm" class="basket-form">
+        <form method="POST" action="https://formspree.io/dzeblyuk@gmail.com" class="basket-form">
           <div class="input-group item" v-for="(item, key) in itemForBuy" :key="key">
             <img :src="'./img/' + item.img" alt class="item-img">
             <div class="item-name">{{item.title}}</div>
-            <!-- <input name="type" type="text"  value> -->
+            <input name="type" type="text" :value="item.size" hidden>
             <div class="item__character--wrap">
               <div class="item__type">
                 <label for="tupe" class="item__label item__type--title">Виберите тару:</label>
@@ -37,6 +36,7 @@
               </div>
 
               <div class="item-count">
+                <input name="type" type="text" :value="item.count" hidden>
                 <label for="count" class="item__label item__type--title">Колличество:</label>
                 <div class="input-wrap">
                   <button
@@ -196,7 +196,7 @@ export default {
       // data.append("fio", this.fio);
       // data.append("tel", this.tel);
       // data.append("email", this.email);
-      fetch("file.php", {
+      fetch("send.php", {
         method: "post",
         body: JSON.parse(
           JSON.stringify({
@@ -241,9 +241,9 @@ export default {
     display: block;
     cursor: pointer;
     border: 3px solid $main-color;
-    position: absolute;
-    right: 2px;
-    top: 2px;
+    @include position(center);
+    left: calc(50% + 380px);
+    top: calc(50% - 270px);
 
     .icon-svg {
       fill: $main-color;
@@ -262,9 +262,9 @@ export default {
     height: 500px;
     background: #fff;
     padding: 20px 20px 50px;
-    overflow: scroll;
+    overflow-y: scroll;
     position: relative;
-    @include respond-to(lp) {
+    @include respond-to(t) {
       padding: 80px 65px;
       width: 730px;
     }
@@ -279,7 +279,7 @@ export default {
 }
 .items-title {
   display: none;
-  @include respond-to(lp) {
+  @include respond-to(t) {
     display: flex;
     width: 100%;
     align-items: center;
@@ -479,7 +479,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  @include respond-to(lp) {
+  @include respond-to(t) {
     width: 430px;
   }
   .input-group {

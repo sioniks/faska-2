@@ -4,7 +4,7 @@
     <div class="full-product_info">
       <h3 class="full-product_header">{{header}}</h3>
       <p class="full-product_type">{{type}}</p>
-      <button class="s-btn full-product_btn" @click="$emit('openBasket')">Заказать</button>
+      <button class="s-btn full-product_btn" @click="$emit('openBasket'), productIndex">Заказать</button>
       <div class="full-product_infobtn">
         <div
           class="info-btn full-product_subscribe"
@@ -46,6 +46,7 @@ export default {
     type: String,
     image: String,
     character: Array,
+    productIndex: Number,
     description: Array
   },
   data() {
@@ -127,10 +128,9 @@ export default {
     margin: 20px 0 10px;
     font-size: 14px;
     .info-btn {
-      margin-right: 20px;
       position: relative;
       height: 30px;
-      padding-bottom: 5px;
+      padding: 0px 10px 5px 10px;
       color: #656565;
       cursor: pointer;
       &.active {
