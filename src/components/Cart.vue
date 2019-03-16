@@ -21,6 +21,7 @@
           <div class="input-group item" v-for="(item, key) in itemForBuy" :key="key">
             <img :src="'./img/' + item.img" alt class="item-img">
             <div class="item-name">{{item.title}}</div>
+            <input type="hidden" name="value" :value="item.title">
 
             <div class="item__character--wrap">
               <div class="item__type">
@@ -120,9 +121,9 @@
                 type="tel"
                 name="tel"
                 id="mobile"
-                placeholder="(099)-99-99-999"
+                placeholder="+38 (099)-99-99-999"
                 required
-                v-mask="'(###) ## ## ###'"
+                v-mask="'+38 (0##) ## ## ###'"
               >
             </div>
             <div class="input-group">
@@ -252,7 +253,7 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 100;
+  z-index: 105;
   width: 100vw;
   height: 100vh;
   display: block;

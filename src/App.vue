@@ -293,7 +293,7 @@ export default {
       }
     },
     animBasket() {
-      if (this.activeBasket) {
+      if (this.itemForBuy.length) {
         document.querySelector(".mini-basket").classList.add("anim");
         setTimeout(() => {
           document.querySelector(".mini-basket").classList.remove("anim");
