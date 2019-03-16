@@ -44,10 +44,10 @@ export default {
     height: 625px;
     &:hover {
       .one-product--hover {
-        opacity: 0;
+        opacity: 0.3;
       }
       .info-link {
-        background: rgba($main-color, 0.5);
+        background: rgba(#000, 0.5);
       }
     }
   }
@@ -60,8 +60,7 @@ export default {
     right: -75px;
     z-index: 10;
     transition: all 0.5s ease;
-
-    background: rgba(#000, 0.5);
+    background: rgba($main-color, 0.5);
     transform: rotate(45deg);
     cursor: pointer;
   }
@@ -90,7 +89,7 @@ export default {
   }
   &--hover {
     position: absolute;
-    opacity: 0.3;
+    opacity: 0;
     transition: opacity 0.5s ease;
     top: 0;
     left: 0;
@@ -100,7 +99,7 @@ export default {
     background-color: $main-color;
   }
   &_info {
-    min-height: 200px;
+    min-height: 250px;
     width: 100%;
     position: absolute;
     z-index: 3;

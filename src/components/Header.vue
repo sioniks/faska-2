@@ -44,7 +44,10 @@ export default {
 .header {
   background: #090700;
   height: 70px;
-  @include respond-to(lp) {
+  width: 100%;
+  position: fixed;
+  z-index: 200;
+  @include respond-to(lg) {
     height: 128px;
   }
   &-nav {
@@ -74,7 +77,7 @@ export default {
   align-items: center;
   list-style-type: none;
 
-  position: absolute;
+  position: fixed;
   width: 95vw;
   height: 95vh;
   background: #000;
@@ -129,6 +132,7 @@ export default {
   top: 18px;
   width: 30px;
   height: 30px;
+  cursor: pointer;
 
   @include respond-to(lp) {
     display: none;
@@ -137,6 +141,7 @@ export default {
     fill: #fff;
   }
 }
+
 .close-icon {
   fill: #fff;
   position: absolute;
@@ -145,5 +150,6 @@ export default {
   width: 20px;
   height: 20px;
   display: none;
+  cursor: pointer;
 }
 </style>

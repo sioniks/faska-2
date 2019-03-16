@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <main-header/>
+
     <section
       class="info info-section"
       :style="{ backgroundImage: 'url(./img/' + info[1].blockOneImg + ')' }"
@@ -102,16 +103,20 @@
               :image="block.image"
               :key="key"
               :productIndex="block.id"
-              @openBasket="activeBasket = true, itemForBuy.push({img: block.image, title: block.header, count: 1, size: block.volume[0].size, price: block.volume[0].price, volume: block.volume})"
-              @openInfo="fullslider = true, goToSlide(block.id - 1)"
+              @openBasket="animBasket(), activeBasket = true, itemForBuy.push({img: block.image, title: block.header, count: 1, size: block.volume[0].size, price: block.volume[0].price, volume: block.volume})"
+              @openInfo="fullslider = true, goToSlide(block.id - 1), noScroll()"
             />
           </carousel>
         </div>
       </div>
 
-      <div class="product-fullslider_wrap" v-if="fullslider" @click.self="fullslider = false">
+      <div
+        class="product-fullslider_wrap"
+        v-if="fullslider"
+        @click.self="fullslider = false, noScroll()"
+      >
         <div class="product-fullslider">
-          <div class="fullslider-close" @click="fullslider = false">
+          <div class="fullslider-close" @click="fullslider = false, noScroll()">
             <svg class="icon-svg">
               <use xlink:href="#icon-cross"></use>
             </svg>
@@ -126,14 +131,14 @@
             :startPosition="activeSlide"
           >
             <one-full-product
-              v-for="(block, value, key) in info[6].productionItems"
+              v-for="(block) in info[6].productionItems"
               :header="block.header"
               :type="block.type"
               :image="block.image"
               :character="block.character"
               :description="block.description"
-              :key="key"
-              @openBasket="activeBasket = true, itemForBuy.push({img: block.image, title: block.header, count: 1, size: block.volume[0].size, price: block.volume[0].price, volume: block.volume})"
+              :key="block.id"
+              @openBasket="animBasket(), activeBasket = true, itemForBuy.push({img: block.image, title: block.header, count: 1, size: block.volume[0].size, price: block.volume[0].price, volume: block.volume})"
             />
           </carousel>
         </div>
@@ -279,6 +284,21 @@ export default {
         this.items = 3;
         this.itemsGallery = 4;
       }
+    },
+    noScroll() {
+      if (this.fullslider) {
+        document.querySelector("html").classList.add("no-scroll");
+      } else {
+        document.querySelector("html").classList.remove("no-scroll");
+      }
+    },
+    animBasket() {
+      if (this.activeBasket) {
+        document.querySelector(".mini-basket").classList.add("anim");
+        setTimeout(() => {
+          document.querySelector(".mini-basket").classList.remove("anim");
+        }, 500);
+      }
     }
   }
 };
@@ -295,6 +315,7 @@ export default {
 }
 .info {
   &-section {
+    padding-top: 70px;
     height: 560px;
     background-size: auto 100%;
     background-repeat: no-repeat;
@@ -305,6 +326,8 @@ export default {
       background-position: center bottom;
     }
     @include respond-to(lg) {
+      padding-top: 130px;
+
       height: 690px;
       background-position: center bottom;
     }
@@ -327,7 +350,7 @@ export default {
     padding-right: 10px;
     @include respond-to(t) {
       width: 40%;
-      padding-top: 130px;
+      padding-top: 90px;
     }
   }
   &-header {
@@ -1033,8 +1056,8 @@ export default {
   align-items: center;
   justify-content: center;
   position: fixed;
-  z-index: 50;
-  top: 10%;
+  z-index: 150;
+  top: 22%;
   right: 10px;
   width: 50px;
   height: 50px;
@@ -1042,6 +1065,13 @@ export default {
   background-color: #000;
   border-radius: 50%;
   border: 1px solid $main-color;
+  transition: all 0.5s ease;
+  &.anim {
+    transform: scale(1.2);
+  }
+  @include respond-to(t) {
+    top: 10%;
+  }
   @include respond-to(lp) {
     top: 20%;
     right: 20px;

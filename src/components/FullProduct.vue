@@ -153,8 +153,8 @@ export default {
   &_subscribe-list {
     display: flex;
     flex-direction: column;
-    overflow: scroll;
-    height: 250px;
+    overflow: auto;
+    height: 240px;
     font-size: 14px;
     .list-item {
       margin-bottom: 10px;
@@ -193,11 +193,11 @@ export default {
     font-size: 14px;
     display: flex;
     flex-direction: column;
-    overflow-y: scroll;
-    height: 250px;
-    @include respond-to(lp) {
-      height: 330px;
-    }
+    overflow: auto;
+    height: 240px;
+    // @include respond-to(lp) {
+    //   height: 330px;
+    // }
     @include respond-to(lg) {
       height: 460px;
     }

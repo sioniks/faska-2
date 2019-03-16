@@ -560,8 +560,10 @@
           }
 
         ],
-
-
+        "description": [{
+          "title": "",
+          "text": ""
+        }],
         "volume": [{
             "size": "200гр",
             "price": 15,

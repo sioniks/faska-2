@@ -13,11 +13,15 @@
           <p class="items-title_count">Колличество</p>
           <p class="items-title_price">Цена</p>
         </div>
-        <form method="POST" action="https://formspree.io/dzeblyuk@gmail.com" class="basket-form">
+        <form
+          method="POST"
+          action="https://formspree.io/admin@faska-organic.com.ua"
+          class="basket-form"
+        >
           <div class="input-group item" v-for="(item, key) in itemForBuy" :key="key">
             <img :src="'./img/' + item.img" alt class="item-img">
             <div class="item-name">{{item.title}}</div>
-            <input name="type" type="text" :value="item.size" hidden>
+
             <div class="item__character--wrap">
               <div class="item__type">
                 <label for="tupe" class="item__label item__type--title">Виберите тару:</label>
@@ -33,10 +37,10 @@
                     :key="key"
                   >{{option.size}}</option>
                 </select>
+                <input type="hidden" name="value" :value="item.size">
               </div>
 
               <div class="item-count">
-                <input name="type" type="text" :value="item.count" hidden>
                 <label for="count" class="item__label item__type--title">Колличество:</label>
                 <div class="input-wrap">
                   <button
@@ -63,6 +67,8 @@
                       <use xlink:href="#icon-plus"></use>
                     </svg>
                   </button>
+                  
+                  <input type="hidden" name="value" :value="item.count">
                 </div>
               </div>
               <div class="item-price">
@@ -76,6 +82,8 @@
                   :value="item.price * item.count  + ' грн'"
                   disabled
                 >
+                
+                <input type="hidden" name="value" :value="item.price * item.count">
               </div>
             </div>
             <div class="item-remove" @click="removeProduct(key)">
@@ -100,6 +108,7 @@
           <h3 class="basket-header">Оставить заявку</h3>
           <div class="bio">
             <div class="input-group">
+              <input type="hidden" name="total-price" :value="totalSum() + ' грн'">
               <label class="bio-title" for="fio">Имя и фамилия</label>
               <input v-model="fio" class="bio-input" type="text" name="fio" id="fio">
             </div>
@@ -111,10 +120,9 @@
                 type="tel"
                 name="tel"
                 id="mobile"
-                placeholder="099-99-99-999"
-                pattern="^[0-9]{10}$"
-                title="0999999999"
+                placeholder="(099)-99-99-999"
                 required
+                v-mask="'(###) ## ## ###'"
               >
             </div>
             <div class="input-group">
@@ -141,8 +149,11 @@
 </template>
 
 <script>
+import { mask } from "vue-the-mask";
+
 export default {
   name: "Cart",
+  directives: { mask },
   props: {
     itemForBuy: Array,
     cartTotal: Number
@@ -162,6 +173,19 @@ export default {
         };
       })
     };
+  },
+  computed: {
+    bucketListForMail: function() {
+      let result = this.itemForBuy.map(item => {
+        return {
+          name: item.title,
+          count: item.count,
+          size: item.size,
+          price: item.price * item.count
+        };
+      });
+      return result;
+    }
   },
   methods: {
     totalSum: function() {

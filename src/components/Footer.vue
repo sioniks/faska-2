@@ -13,6 +13,7 @@
           <div class="footer-social-links">
             <a
               class="link"
+              target="_blank"
               v-for="(item, value, key) in info[10].socialItems"
               :key="key"
               :href="item.link"
