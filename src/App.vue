@@ -771,6 +771,10 @@ export default {
     min-height: 490px;
     display: block;
     position: relative;
+    margin-top: 30px;
+    @include respond-to(t) {
+      margin-top: 0;
+    }
     @include respond-to(lp) {
       width: 790px;
       min-height: 520px;
@@ -790,8 +794,11 @@ export default {
     border: 3px solid $main-color;
     position: absolute;
     right: 11px;
-    top: 11px;
+    top: 20px;
     z-index: 10;
+    @include respond-to(t) {
+      top: 11px;
+    }
 
     .icon-svg {
       fill: $main-color;
