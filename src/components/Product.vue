@@ -140,6 +140,7 @@ export default {
   }
   &_btn {
     background-color: $main-color;
+    cursor: pointer;
   }
 }
 .icon-svg {

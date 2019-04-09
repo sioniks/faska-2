@@ -299,6 +299,7 @@ export default {
           document.querySelector(".mini-basket").classList.remove("anim");
         }, 500);
       }
+      console.log(22222222);
     }
   }
 };

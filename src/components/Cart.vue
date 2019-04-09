@@ -54,7 +54,7 @@
                       <use xlink:href="#icon-minus"></use>
                     </svg>
                   </button>
-                  
+
                   <input
                     id="count"
                     name="count"
@@ -68,7 +68,7 @@
                       <use xlink:href="#icon-plus"></use>
                     </svg>
                   </button>
-                  
+
                   <input type="hidden" name="value" :value="item.count">
                 </div>
               </div>
@@ -83,7 +83,7 @@
                   :value="item.price * item.count  + ' грн'"
                   disabled
                 >
-                
+
                 <input type="hidden" name="value" :value="item.price * item.count">
               </div>
             </div>
@@ -110,7 +110,7 @@
           <div class="bio">
             <div class="input-group">
               <input type="hidden" name="total-price" :value="totalSum() + ' грн'">
-              <label class="bio-title" for="fio">Имя и фамилия</label>
+              <label class="bio-title" for="fio">Имя</label>
               <input v-model="fio" class="bio-input" type="text" name="fio" id="fio">
             </div>
             <div class="input-group">
@@ -121,9 +121,9 @@
                 type="tel"
                 name="tel"
                 id="mobile"
-                placeholder="+38 (099)-99-99-999"
+                placeholder="+38 (099) 999 99 99"
                 required
-                v-mask="'+38 (0##) ## ## ###'"
+                v-mask="'+38 (###) ### ## ##'"
               >
             </div>
             <div class="input-group">
@@ -141,7 +141,7 @@
               >
             </div>
             <span class="error-massage">* - поля обязательные для заполнениея</span>
-            <button class="btn-submit" type="submit" :disabled="this.tel.length < 10">Заказать</button>
+            <button class="btn-submit" type="submit" :disabled="this.tel.length < 19">Заказать</button>
           </div>
         </form>
       </div>
