@@ -10,7 +10,7 @@
     <div class="one-product_info">
       <h3 class="one-product_header">{{header}}</h3>
       <p class="one-product_subtext">{{subtext}}</p>
-      <button class="s-btn one-product_btn" @click="$emit('openBasket')">Заказать</button>
+      <button class="s-btn one-product_btn" @click.self="$emit('openBasket')">Заказать</button>
     </div>
   </div>
 </template>

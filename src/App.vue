@@ -92,7 +92,8 @@
             ref="carousel1"
             :items="items"
             :margin="15"
-            :loop="true"
+            :checkVisible="false"
+            :loop="false"
             :nav="true"
             :navText="navText"
           >
