@@ -75,7 +75,7 @@ export default {
   }
   @include respond-to(lg) {
     width: 1000px;
-    min-height: 750px;
+    min-height: 690px;
   }
 
   &_img {
@@ -156,6 +156,9 @@ export default {
     overflow: auto;
     height: 240px;
     font-size: 14px;
+    @include respond-to(lg) {
+      height: 380px;
+    }
     .list-item {
       margin-bottom: 10px;
       display: block;

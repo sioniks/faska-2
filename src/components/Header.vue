@@ -48,7 +48,7 @@ export default {
   position: fixed;
   z-index: 200;
   @include respond-to(lg) {
-    height: 128px;
+    height: 90px;
   }
   &-nav {
     display: flex;
